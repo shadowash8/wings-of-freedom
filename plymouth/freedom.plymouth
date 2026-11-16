@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Freedom
+Description=Wings of Freedom boot splash screen
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/freedom
+ScriptFile=/usr/share/plymouth/themes/freedom/freedom.script

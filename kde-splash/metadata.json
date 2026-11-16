@@ -3,6 +3,10 @@
   "KPlugin": {
     "Authors": [
       {
+        "Email": "shadowash8@protonmail.com",
+        "Name": "A S H"
+      },
+      {
         "Email": "dancpontes@tutamail.com",
         "Name": "dancp"
       },
@@ -16,11 +20,11 @@
       }
     ],
     "Category": "",
-    "Description": "A simple blue Arch Linux logo for Plasma Splashscreen",
-    "Id": "archsimpleblue",
+    "Description": "Wings of Freedom for Plasma Splashscreen",
+    "Id": "wings-of-freedom",
     "License": "GPLv3",
-    "Name": "archsimpleblue",
-    "Website": "https://github.com/kraken-afk/archsimpleblue-kde6"
+    "Name": "wings-of-freedom",
+    "Website": "https://github.com/shadowash8/wings-of-freedom"
   },
   "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;",
   "X-Plasma-APIVersion": "2",

@@ -1,0 +1,36 @@
+// Solid black background
+Window.SetBackgroundTopColor(0.0, 0.0, 0.0);
+Window.SetBackgroundBottomColor(0.0, 0.0, 0.0);
+
+// Load and scale Wings of Freedom to 32% of screen height (preserving aspect ratio)
+logo.image = Image("freedom.png");
+logo.target_height = Window.GetHeight() * 0.32;
+logo.scale = logo.target_height / logo.image.GetHeight();
+logo.scaled = logo.image.Scale(logo.image.GetWidth() * logo.scale, logo.target_height);
+
+logo.sprite = Sprite(logo.scaled);
+logo.sprite.SetX(Window.GetWidth() / 2 - logo.scaled.GetWidth() / 2);
+logo.sprite.SetY(Window.GetHeight() * 0.23);
+
+// Load spinner and center it in the remaining space below the logo
+spinner.image = Image("spinner.png");
+spinner.sprite = Sprite(spinner.image);
+spinner.sprite.SetX(Window.GetWidth() / 2 - spinner.image.GetWidth() / 2);
+
+logo.bottom = logo.sprite.GetY() + logo.scaled.GetHeight();
+spinner.y = logo.bottom + (Window.GetHeight() - logo.bottom) / 2 - spinner.image.GetHeight() / 2;
+spinner.sprite.SetY(spinner.y);
+
+// Rotate continuously (~1 full rotation every 0.8s at 50 FPS)
+spinner.angle = 0;
+fun refresh_callback() {
+    spinner.angle += 0.157;
+    spinner.sprite.SetImage(spinner.image.Rotate(spinner.angle));
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+// Support LUKS disk encryption password prompts if needed
+fun display_password_callback(prompt, bullets) {
+    // Keep simple fallback or custom prompt handling if encrypted
+}
+Plymouth.SetDisplayPasswordFunction(display_password_callback);

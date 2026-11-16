@@ -1,6 +1,5 @@
 import QtQuick 2.5
 
-
 Rectangle {
     id: root
     color: "black"
@@ -22,35 +21,48 @@ Rectangle {
         id: content
         anchors.fill: parent
         opacity: 0
+
         TextMetrics {
             id: units
             text: "M"
             property int gridUnit: boundingRect.height
             property int largeSpacing: units.gridUnit
-            property int smallSpacing: Math.max(2, gridUnit/4)
+            property int smallSpacing: Math.max(2, gridUnit / 4)
         }
 
         Image {
             id: logo
-            //match SDDM/lockscreen avatar positioning
-            property real size: units.gridUnit * 8
+            // Increased size
+            property real size: units.gridUnit * 20
 
-            anchors.centerIn: parent
+            // Position at the top center with comfortable breathing room
+            anchors.top: parent.top
+            anchors.topMargin: parent.height * 0.25
+            anchors.horizontalCenter: parent.horizontalCenter
 
-            source: "images/archlogo.png"
+            source: "images/freedom.png"
 
-            sourceSize.width: size
-            sourceSize.height: size
+            // Explicit dimensions + PreserveAspectFit prevent stretching/clipping
+            width: size
+            height: size
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+            mipmap: true
+
+            // Render at high resolution so upscaling stays sharp
+            sourceSize.width: size * 2
+            sourceSize.height: size * 2
         }
 
         Image {
             id: busyIndicator
-            //in the middle of the remaining space
-            y: parent.height - (parent.height - logo.y) / 2 - height/2
+            y: logo.y + logo.height + (parent.height - (logo.y + logo.height)) / 2 - height / 2
             anchors.horizontalCenter: parent.horizontalCenter
+
             source: "images/busy01.svg"
             sourceSize.height: units.gridUnit * 3
             sourceSize.width: units.gridUnit * 3
+
             RotationAnimator on rotation {
                 id: rotationAnimator
                 from: 0
@@ -59,7 +71,6 @@ Rectangle {
                 loops: Animation.Infinite
             }
         }
-
     }
 
     OpacityAnimator {
